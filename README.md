@@ -89,8 +89,8 @@ This design means a change to the Navbar selector only requires updating `Navbar
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/MehmetuAlatas/component-based-pom.git
+cd component-based-pom
 
 # 2. Install dependencies
 npm ci
@@ -253,62 +253,6 @@ test("User should see cart badge updated after adding a product to cart", async 
   await inventoryPage.inventoryList.addItemToCartByName("Sauce Labs Backpack");
   await inventoryPage.navbar.expectCartBadgeToHaveText("1");
 });
-```
-
----
-
-## Naming Conventions
-
-| Type | Convention | Example |
-|---|---|---|
-| Page classes | `PascalCase` + `Page` suffix | `LoginPage`, `InventoryPage` |
-| Component classes | `PascalCase` | `Navbar`, `LoginForm` |
-| Test files | `kebab-case.spec.ts` | `login.spec.ts` |
-| Locators | `camelCase` noun | `loginButton`, `cartBadge` |
-| Action methods | `camelCase` verb | `openMenu()`, `addItemToCartByName()` |
-| Assertion methods | `expect` prefix | `expectCartBadgeToHaveText()` |
-
----
-
-## Best Practices
-
-**Always import from `@playwright/test`** — never mix with the bare `playwright` package:
-
-```typescript
-// ✅
-import { Page, Locator, expect } from "@playwright/test";
-
-// ❌
-import { Page, Locator } from "playwright";
-```
-
-**Keep locators `readonly`** — set once in the constructor, never reassigned:
-
-```typescript
-readonly loginButton: Locator; // ✅
-```
-
-**Scope locators to their component** — use `.filter()` and chained `.locator()` to avoid brittle global selectors:
-
-```typescript
-const item = this.items.filter({ hasText: name });
-const addButton = item.locator("button", { hasText: "Add to cart" });
-```
-
-**Put reusable assertions on the component** — keeps tests clean and assertion logic in one place:
-
-```typescript
-async expectCartBadgeToHaveText(expectedText: string) {
-  await expect(this.cartBadge).toBeVisible();
-  await expect(this.cartBadge).toHaveText(expectedText);
-}
-```
-
-**Use `.spec.ts` suffix** — Playwright's default discovery pattern is `**/*.spec.ts`:
-
-```
-✅ login.spec.ts
-❌ login_spec.ts   ← Playwright will NOT discover this file
 ```
 
 ---
