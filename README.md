@@ -1,6 +1,6 @@
 # 🎭 Playwright Component-Based Page Object Model
 
-![CI](https://github.com/MehmetuAlatas/<your-repo>/actions/workflows/playwright.yml/badge.svg)
+![CI](https://github.com/MehmetuAlatas/component-based-pom/actions/workflows/playwright.yml/badge.svg)
 ![Playwright](https://img.shields.io/badge/Playwright-1.x-45ba4b?logo=playwright)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript)
 ![Node](https://img.shields.io/badge/Node.js-18+-339933?logo=nodedotjs)
